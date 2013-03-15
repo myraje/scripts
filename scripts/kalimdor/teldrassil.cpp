@@ -28,6 +28,52 @@ EndContentData */
 #include "precompiled.h"
 #include "follower_ai.h"
 
+/*######
+## npc_dentaria_silverglade
+######*/
+
+struct MANGOS_DLL_DECL npc_dentaria_silverglade : public ScriptedAI
+{
+    npc_dentaria_silverglade(Creature* pCreature) : ScriptedAI(pCreature) {Reset();}
+
+    void Reset()
+    {
+        m_creature->SetStandState(UNIT_STAND_STATE_KNEEL);
+    }
+
+    void MoveInLineOfSight(Unit* pWho) { }                  // ignore everyone around them (won't aggro anything)
+
+    void UpdateAI(const uint32 uiDiff) { }
+};
+
+CreatureAI* GetAI_npc_dentaria_silverglade(Creature* pCreature)
+{
+    return new npc_dentaria_silverglade(pCreature);
+}
+
+/*######
+## npc_iverron
+######*/
+
+struct MANGOS_DLL_DECL npc_iverron : public ScriptedAI
+{
+    npc_iverron(Creature* pCreature) : ScriptedAI(pCreature) {Reset();}
+
+    void Reset()
+    {
+        m_creature->SetStandState(UNIT_STAND_STATE_SLEEP);
+    }
+
+    void MoveInLineOfSight(Unit* pWho) { }                  // ignore everyone around them (won't aggro anything)
+
+    void UpdateAI(const uint32 uiDiff) { }
+};
+
+CreatureAI* GetAI_npc_iverron(Creature* pCreature)
+{
+    return new npc_iverron(pCreature);
+}
+
 /*####
 # npc_mist
 ####*/
@@ -104,6 +150,16 @@ bool QuestAccept_npc_mist(Player* pPlayer, Creature* pCreature, const Quest* pQu
 void AddSC_teldrassil()
 {
     Script* pNewScript;
+
+    pNewScript = new Script;
+    pNewScript->Name = "npc_dentaria_silverglade";
+    pNewScript->GetAI = &GetAI_npc_dentaria_silverglade;
+    pNewScript->RegisterSelf();
+
+    pNewScript = new Script;
+    pNewScript->Name = "npc_iverron";
+    pNewScript->GetAI = &GetAI_npc_iverron;
+    pNewScript->RegisterSelf();
 
     pNewScript = new Script;
     pNewScript->Name = "npc_mist";

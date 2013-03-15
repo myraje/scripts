@@ -1073,6 +1073,8 @@ UPDATE creature_template SET ScriptName='npc_tooga' WHERE entry=5955;
 
 /* TELDRASSIL */
 UPDATE creature_template SET ScriptName='npc_mist' WHERE entry=3568;
+UPDATE creature_template SET ScriptName='npc_iverron' WHERE entry=8584;
+UPDATE creature_template SET ScriptName='npc_dentaria_silverglade' WHERE entry=49479;
 
 /*  */
 /* TEMPEST KEEP */
